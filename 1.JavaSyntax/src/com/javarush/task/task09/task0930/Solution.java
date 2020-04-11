@@ -2,8 +2,7 @@ package com.javarush.task.task09.task0930;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 
 /* 
 Задача по алгоритмам
