@@ -3,6 +3,7 @@ package com.javarush.task.task09.task0930;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /* 
 Задача по алгоритмам
@@ -40,6 +41,49 @@ public class Solution {
 
     public static void sort(String[] array) {
         // напишите тут ваш код
+        for (int i = 0; i < array.length; i++)
+        {
+            for (int j = i + 1; j < array.length; j++)
+            {
+                String current = array[i];
+                String next = array[j];
+                String tmp = null;
+                if (isNumber(current))
+                {
+//                    System.out.println("numeric current "+current+" next "+next);
+                    if (isNumber(next))
+                    {
+//                        System.out.println("numeric next "+next);
+//                        System.out.println("current - " +array[i] + " next "+ array[j]);
+                        if(Integer.parseInt(current) < Integer.parseInt(next))
+                        {
+//                            System.out.println("cond: "+Integer.parseInt(current) +"<"+ Integer.parseInt(next));
+                            tmp = next;
+                            array[j] = current;
+                            array[i] = tmp;
+                        }
+//                        System.out.println("current - " +array[i] + " next "+ array[j]);
+                    }
+//                    System.out.println("+++++++++++++end of numeric current+++++++++");
+                } else {
+//                    System.out.println("NOT a numeric current "+current+" next "+next);
+                    if (!isNumber(next))
+                    {
+//                        System.out.println("NOT numeric next "+next);
+//                        System.out.println("current - " +array[i] + " next "+ array[j]);
+                        if(isGreaterThan(current, next))
+                        {
+//                            System.out.println("cond: "+isGreaterThan(current, next));
+                            tmp = next;
+                            array[j] = current;
+                            array[i] = tmp;
+                        }
+                    }
+//                    System.out.println("+++++++++++++end of NOT a numeric current+++++++++");
+                }
+            }
+//            System.out.println("---------EOF first cycle---------");
+        }
     }
 
     // Метод для сравнения строк: 'а' больше чем 'b'
