@@ -13,8 +13,29 @@ package com.javarush.task.task13.task1326;
 5. Программа должна закрывать поток чтения из файла(FileInputStream).
 */
 
+import java.io.*;
+import java.util.*;
+
 public class Solution {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // напишите тут ваш код
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        String fileName = bf.readLine();
+        bf.close();
+
+//        InputStream in = new FileInputStream("C:\\Users\\vika\\Downloads\\test.txt");
+        InputStream in = new FileInputStream(fileName);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+        List<Integer> list = new ArrayList<>();
+        while(reader.ready()){
+            list.add(Integer.parseInt(reader.readLine()));
+        }
+        list.stream()
+                .filter(v -> v%2 == 0)
+                .sorted()
+                .forEach(System.out::println);
+
+        reader.close();
+        in.close();
     }
 }
