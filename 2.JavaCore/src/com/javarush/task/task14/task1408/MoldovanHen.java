@@ -2,6 +2,8 @@ package com.javarush.task.task14.task1408;
 
 public class MoldovanHen extends Hen implements Country {
 
+    private String COUNTRY = Country.MOLDOVA;
+
     @Override
     int getCountOfEggsPerMonth() {
         return 9;
@@ -9,9 +11,8 @@ public class MoldovanHen extends Hen implements Country {
 
     @Override
     public String getDescription() {
-        String country = Country.MOLDOVA;
         String str = super.getDescription() + " Моя страна - "
-                + country
+                + COUNTRY
                 + ". Я несу "
                 + this.getCountOfEggsPerMonth()
                 + " яиц в месяц.";
