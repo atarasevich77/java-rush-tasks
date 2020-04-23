@@ -24,7 +24,6 @@ public class Solution {
 
     public interface MusicalInstrument extends Runnable {
         Date startPlaying();
-
         Date stopPlaying();
     }
 
@@ -38,10 +37,10 @@ public class Solution {
         @Override
         public void run(){
             Date startPlaying = startPlaying();
-            sleepNSeconds(Solution.delay);
+            sleepNSeconds(1);
             Date stopPlaying = stopPlaying();
-            int playiTime = (stopPlaying - startPlaying) + Solution.delay;
-            System.out.println();
+            int playTime = (int) (stopPlaying.getTime() - startPlaying.getTime());
+            System.out.println("Playing "+ playTime +" ms");
         }
         
         public Date startPlaying() {
