@@ -5,6 +5,11 @@ import java.util.List;
 
 /* 
 Один для всех, все - для одного
+1. Метод ourInterruptMethod должен прервать все нити из списка threads.
+2. Метод run должен получать текущую нить с помощью Thread.currentThread.
+3. Метод run должен использовать метод isInterrupted текущей нити.
+4. Метод run должен использовать метод getName текущей нити.
+5. Метод main должен работать примерно 3 сек.
 */
 
 public class Solution {
@@ -19,6 +24,9 @@ public class Solution {
 
     public static void ourInterruptMethod() {
         //add your code here - добавь код тут
+        threads.forEach(
+                t -> t.interrupt()
+        );
     }
 
     private static void initThreadsAndStart() {
@@ -41,9 +49,8 @@ public class Solution {
 
         public void run() {
             //fix 2 variables - исправь 2 переменных
-            boolean isCurrentThreadInterrupted = false;
-            String threadName = "";
-
+            boolean isCurrentThreadInterrupted = Thread.currentThread().isInterrupted();
+            String threadName = Thread.currentThread().getName();
             try {
                 while (!isCurrentThreadInterrupted) {
 
