@@ -10,12 +10,57 @@ import java.util.Map;
 public class Solution {
     public static Map<String, String> countries = new HashMap<String, String>();
 
+    static{
+        countries.put("UA", "Ukraine");
+        countries.put("RU", "Russia");
+        countries.put("CA", "Canada");
+    }
+
     public static void main(String[] args) {
 
     }
 
-    public static class DataAdapter {
+    public static class DataAdapter implements RowItem {
+
+        private Customer customer;
+        private Contact contact;
+
         public DataAdapter(Customer customer, Contact contact) {
+            this.customer = customer;
+            this.contact = contact;
+        }
+
+        @Override
+        public String getCountryCode() {
+            String desiredKey = null;
+            for(Map.Entry<String,String> pair : countries.entrySet()) {
+                if (pair.getValue().equals(customer.getCountryName())) {
+                    desiredKey = pair.getKey();
+                    break;
+                }
+            }
+            return desiredKey;
+        }
+
+        @Override
+        public String getCompany() {
+            return this.customer.getCompanyName();
+        }
+
+        @Override
+        public String getContactFirstName() {
+            return this.contact.getName().split(", ")[1].trim();
+        }
+
+        @Override
+        public String getContactLastName() {
+            return this.contact.getName().split(", ")[0].trim();
+        }
+
+        @Override
+        public String getDialString() {
+            /*\\D clear all exclude digits*/
+            return "callto://+" + this.contact.getPhoneNumber().replaceAll("\\D", "");
         }
     }
 
