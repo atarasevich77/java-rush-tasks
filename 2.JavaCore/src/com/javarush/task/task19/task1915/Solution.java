@@ -1,31 +1,34 @@
-package com.javarush.task.task19.task1912;
+package com.javarush.task.task19.task1915;
 
 /* 
-Ридер обертка 2
+Дублируем текст
 */
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
+import java.io.*;
 
 public class Solution {
     public static TestString testString = new TestString();
 
-    public static void main(String[] args) {
-        /*Start adapter*/
-        PrintStream consoleStream = System.out;
+    public static void main(String[] args) throws IOException {
 
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String fileName = reader.readLine();
+        reader.close();
+
+        PrintStream consoleStream = System.out;
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream);
         System.setOut(printStream);
 
         testString.printSomething();
-
         String result = outputStream.toString();
-        /*End adapter*/
+
         System.setOut(consoleStream);
 
-        String replacedString = result.replaceAll("te", "??");
-        System.out.println(replacedString);
+        System.out.println(result);
+        BufferedOutputStream bw = new BufferedOutputStream(new FileOutputStream(fileName));
+        bw.write(result.getBytes());
+        bw.close();
     }
 
     public static class TestString {
@@ -34,3 +37,4 @@ public class Solution {
         }
     }
 }
+
