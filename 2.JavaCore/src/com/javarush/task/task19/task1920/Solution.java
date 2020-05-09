@@ -1,21 +1,19 @@
-package com.javarush.task.task19.task1919;
+package com.javarush.task.task19.task1920;
 
 /* 
-Считаем зарплаты
+Самый богатый
 */
 
 import java.io.*;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 public class Solution {
     public static void main(String[] args) throws IOException {
-        String fileName = args[0];
-        BufferedReader reader = new BufferedReader(new FileReader(fileName));
-
+        String filename = args[0];
+        BufferedReader reader = new BufferedReader(new FileReader(filename));
         String line;
         Map<String, Double> map = new TreeMap<>();
-        while ((line = reader.readLine()) != null){
+        while((line = reader.readLine()) != null){
             String[] aLine = line.split(" ");
             String name = aLine[0];
             Double value = Double.parseDouble(aLine[1]);
@@ -26,6 +24,13 @@ public class Solution {
         }
         reader.close();
 
-        map.forEach((k, v) -> System.out.println(k + " " + v));
+        Double maxValue = (Collections.max(map.values()));
+        map.forEach(
+                (k, v) -> {
+                    if(v.equals(maxValue)){
+                        System.out.println(k);
+                    }
+                }
+        );
     }
 }
