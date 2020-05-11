@@ -1,8 +1,7 @@
 package com.javarush.task.task20.task2001;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.io.*;
+import java.util.*;
 
 /* 
 Читаем и пишем в файл: Human
