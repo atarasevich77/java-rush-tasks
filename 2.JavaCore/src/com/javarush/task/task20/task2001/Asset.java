@@ -1,6 +1,8 @@
 package com.javarush.task.task20.task2001;
 
-public class Asset {
+import java.io.Serializable;
+
+public class Asset implements Serializable {
     public Asset(String name, double price) {
         this.name = name;
         this.price = price;
