@@ -18,6 +18,7 @@ public class Solution {
         Collections.addAll(fileTree, folder.listFiles());
 
         while (!fileTree.isEmpty()) {
+            //we can use pool() or remove() methods
             File currentFile = fileTree.remove();
             if(currentFile.isDirectory()) {
                 Collections.addAll(fileTree, currentFile.listFiles());
